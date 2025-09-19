@@ -1,0 +1,3 @@
+background="0x{{background | strip}}"
+focused="0x{{foreground | strip}}"
+unfocused="0x{{foreground | darken(0.4) | strip}}"

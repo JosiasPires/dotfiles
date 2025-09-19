@@ -1,0 +1,13 @@
+#!/bin/sh
+
+CHOSEN=$(printf "Lock\nSuspend\nReboot\nUEFI\nShutdown\nLog Out" | rofi -dmenu)
+
+case "$CHOSEN" in
+	"Lock") hyprlock ;;
+	"Suspend") loginctl suspend ;;
+	"Reboot") loginctl reboot ;;
+	"UEFI") loginctl reboot --firmware-setup ;; 
+	"Shutdown") loginctl poweroff ;;
+	"Log Out") riverctl exit ;;
+	*) exit 1 ;;
+esac

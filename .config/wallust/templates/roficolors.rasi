@@ -1,0 +1,11 @@
+* {
+    font:                        "SpaceMono Nerd Font 10";
+    background:                  {{background}};
+    background-alt:              {{color8}};
+    foreground:                  {{foreground}};
+    selected:                    {{color5}};
+    active:                      {{color7}};
+    urgent:                      {{color2}};
+}
+
+

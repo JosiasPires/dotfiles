@@ -1,0 +1,31 @@
+[global]
+frame_width = 1
+frame_color = "{{color4}}"
+separator_color= "{{foreground}}"
+highlight = "{{color5}}"
+background = "{{background | darken(0.1)}}80"
+foreground = "{{foreground}}"
+corner_radius = 5
+corners = top-left,bottom
+offset = (15, 25)
+gap_size = 5
+format = "<b>󰁕 %a</b>\n%s\n<i>%b</i>"
+font = "SpaceMono Nerd Font"
+
+[urgency_low]
+background = "{{background | darken(0.1)}}ee"
+foreground = "{{foreground}}"
+frame_color = "{{color4}}"
+default_icon = "~/.config/dunst/icons/bell-badge-low.svg"
+
+[urgency_normal]
+background = "{{background | darken(0.1)}}ee"
+foreground = "{{foreground}}"
+frame_color = "{{color6}}"
+default_icon = "~/.config/dunst/icons/bell-badge.svg"
+
+[urgency_critical]
+background = "{{background | darken(0.1)}}ee"
+foreground = "{{foreground}}"
+frame_color = "{{color9}}"
+default_icon = "~/.config/dunst/icons/alert-decagram.svg"
