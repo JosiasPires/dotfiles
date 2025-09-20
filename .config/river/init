@@ -43,9 +43,9 @@ riverctl map normal Super Q close
 # Super+Shift+E to exit river
 riverctl map normal Super+Shift Q exit
 
-# Super+J and Super+K to focus the next/previous view in the layout stack
-riverctl map normal Super+Ctrl Right focus-view next
-riverctl map normal Super+Ctrl Left focus-view previous
+# Super+Control+Right and Super+Control+Left to focus the next/previous view in the layout stack
+riverctl map normal Super+Control Right focus-view next
+riverctl map normal Super+Control Left focus-view previous
 
 # Super+Shift+J and Super+Shift+K to swap the focused view with the next/previous
 # view in the layout stack
@@ -161,8 +161,6 @@ do
     riverctl map $mode None XF86MonBrightnessDown spawn 'brightnessctl set 5%- && dunstify -I ".config/dunst/icons/brightness.svg" -r 101 "Brightness: $(brightnessctl i | grep -i current | awk '\''{print $4}'\'' | tr -d "()")"'
 done
 
-export XDG_CURRENT_DESKTOP=river
-dbus-update-activation-environment --all
 # Set background and border color
 source "$HOME/.config/river/colors"
 riverctl background-color $background
@@ -199,3 +197,5 @@ wl-paste --watch clipvault store &
 riverctl spawn waybar
 riverctl spawn dunst
 riverctl spawn blueman-applet
+
+exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
