@@ -10,4 +10,10 @@
 # PS1='[\u@\h \W]\$ '
 
 export PATH="$HOME/.local/bin:$PATH"
+source /usr/share/nvm/init-nvm.sh
+
+if [[ "$TERM" == foot || "$TERM" == xterm-256color ]]; then
+  source /usr/share/blesh/ble.sh
+  eval "$(starship init bash)"
+fi
 

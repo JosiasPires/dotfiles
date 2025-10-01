@@ -197,5 +197,6 @@ wl-paste --watch clipvault store &
 riverctl spawn waybar
 riverctl spawn dunst
 riverctl spawn blueman-applet
+riverctl spawn /usr/lib/hyprpolkitagent/hyprpolkitagent
 
 exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
