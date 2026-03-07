@@ -17,7 +17,7 @@ riverctl map normal Super T spawn foot
 riverctl map normal Super A spawn "rofi -show drun"
 
 # Print Screen
-riverctl map normal None Print spawn 'grim ~/Pictures/screenshots/$(date +"%Y-%m-%dT%H-%M-%S")_grim.png' 
+riverctl map normal None Print spawn 'grim ~/Pictures/screenshots/$(date +"%Y-%m-%dT%H-%M-%S")_grim.png'
 
 # Print region
 riverctl map normal Super P spawn 'grim -g "$(slurp)" ~/Pictures/screenshots/$(date +"%Y-%m-%dT%H-%M-%S")_grim.png'
@@ -98,15 +98,14 @@ riverctl map-pointer normal Super BTN_RIGHT resize-view
 # Super + Middle Mouse Button to toggle float
 riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
-for i in $(seq 1 9)
-do
-    tags=$((1 << ($i - 1)))
+for i in $(seq 1 9); do
+  tags=$((1 << ($i - 1)))
 
-    # Super+[1-9] to focus tag [0-8]
-    riverctl map normal Super $i set-focused-tags $tags
+  # Super+[1-9] to focus tag [0-8]
+  riverctl map normal Super $i set-focused-tags $tags
 
-    # Super+Shift+[1-9] to tag focused view with tag [0-8]
-    riverctl map normal Super+Shift $i spawn "riverctl set-view-tags $tags; riverctl set-focused-tags $tags"
+  # Super+Shift+[1-9] to tag focused view with tag [0-8]
+  riverctl map normal Super+Shift $i spawn "riverctl set-view-tags $tags; riverctl set-focused-tags $tags"
 
 done
 
@@ -123,10 +122,10 @@ riverctl map normal Super W toggle-float
 riverctl map normal Alt Return toggle-fullscreen
 
 # Super+{Up,Right,Down,Left} to change layout orientation
-riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
+riverctl map normal Super Up send-layout-cmd rivertile "main-location top"
 riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
-riverctl map normal Super Down  send-layout-cmd rivertile "main-location bottom"
-riverctl map normal Super Left  send-layout-cmd rivertile "main-location left"
+riverctl map normal Super Down send-layout-cmd rivertile "main-location bottom"
+riverctl map normal Super Left send-layout-cmd rivertile "main-location left"
 
 # Declare a passthrough mode. This mode has only a single mapping to return to
 # normal mode. This makes it useful for testing a nested wayland compositor
@@ -140,25 +139,24 @@ riverctl map passthrough Super F11 enter-mode normal
 
 # Various media key mapping examples for both normal and locked mode which do
 # not have a modifier
-for mode in normal locked
-do
-    # Eject the optical drive (well if you still have one that is)
-    riverctl map $mode None XF86Eject spawn 'eject -T'
+for mode in normal locked; do
+  # Eject the optical drive (well if you still have one that is)
+  riverctl map $mode None XF86Eject spawn 'eject -T'
 
-    # Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
-    riverctl map $mode None XF86AudioRaiseVolume  spawn 'pamixer -i 5 && dunstify -I ".config/dunst/icons/increase.svg" -r 100 "Volume: $(pamixer --get-volume)%$( [ $(pamixer --get-mute) = true ] && echo " (muted)")"'
-    riverctl map $mode None XF86AudioLowerVolume  spawn 'pamixer -d 5 && dunstify -I ".config/dunst/icons/decrease.svg" -r 100 "Volume: $(pamixer --get-volume)%$( [ $(pamixer --get-mute) = true ] && echo " (muted)")"'
-    riverctl map $mode None XF86AudioMute         spawn 'pamixer --toggle-mute && dunstify -I ".config/dunst/icons/muted.svg" -r 102 "Mute: $(pamixer --get-mute)"'
+  # Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
+  riverctl map $mode None XF86AudioRaiseVolume spawn 'pamixer -i 5 && dunstify -I ".config/dunst/icons/increase.svg" -r 100 "Volume: $(pamixer --get-volume)%$( [ $(pamixer --get-mute) = true ] && echo " (muted)")"'
+  riverctl map $mode None XF86AudioLowerVolume spawn 'pamixer -d 5 && dunstify -I ".config/dunst/icons/decrease.svg" -r 100 "Volume: $(pamixer --get-volume)%$( [ $(pamixer --get-mute) = true ] && echo " (muted)")"'
+  riverctl map $mode None XF86AudioMute spawn 'pamixer --toggle-mute && dunstify -I ".config/dunst/icons/muted.svg" -r 102 "Mute: $(pamixer --get-mute)"'
 
-    # Control MPRIS aware media players with playerctl (https://github.com/altdesktop/playerctl)
-    riverctl map $mode None XF86AudioMedia spawn 'playerctl play-pause'
-    riverctl map $mode None XF86AudioPlay  spawn 'playerctl play-pause'
-    riverctl map $mode None XF86AudioPrev  spawn 'playerctl previous'
-    riverctl map $mode None XF86AudioNext  spawn 'playerctl next'
+  # Control MPRIS aware media players with playerctl (https://github.com/altdesktop/playerctl)
+  riverctl map $mode None XF86AudioMedia spawn 'playerctl play-pause'
+  riverctl map $mode None XF86AudioPlay spawn 'playerctl play-pause'
+  riverctl map $mode None XF86AudioPrev spawn 'playerctl previous'
+  riverctl map $mode None XF86AudioNext spawn 'playerctl next'
 
-    # Control screen backlight brightness with brightnessctl (https://github.com/Hummer12007/brightnessctl)
-    riverctl map $mode None XF86MonBrightnessUp   spawn 'brightnessctl set +5% && dunstify -I ".config/dunst/icons/brightness.svg" -r 101 "Brightness: $(brightnessctl i | grep -i current | awk '\''{print $4}'\'' | tr -d "()")"'
-    riverctl map $mode None XF86MonBrightnessDown spawn 'brightnessctl set 5%- && dunstify -I ".config/dunst/icons/brightness.svg" -r 101 "Brightness: $(brightnessctl i | grep -i current | awk '\''{print $4}'\'' | tr -d "()")"'
+  # Control screen backlight brightness with brightnessctl (https://github.com/Hummer12007/brightnessctl)
+  riverctl map $mode None XF86MonBrightnessUp spawn 'brightnessctl set +5% && dunstify -I ".config/dunst/icons/brightness.svg" -r 101 "Brightness: $(brightnessctl i | grep -i current | awk '\''{print $4}'\'' | tr -d "()")"'
+  riverctl map $mode None XF86MonBrightnessDown spawn 'brightnessctl set 5%- && dunstify -I ".config/dunst/icons/brightness.svg" -r 101 "Brightness: $(brightnessctl i | grep -i current | awk '\''{print $4}'\'' | tr -d "()")"'
 done
 
 # Set background and border color
@@ -198,5 +196,6 @@ riverctl spawn waybar
 riverctl spawn dunst
 riverctl spawn blueman-applet
 riverctl spawn /usr/lib/hyprpolkitagent/hyprpolkitagent
+riverctl spawn "~/.config/river/scripts/wlsunset.sh"
 
 exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
